@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "646d2025-eb12-4c7f-8bbf-1165dd16abb1",
+		"name": "SmartLink",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get request username and password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}?method=panelStatusBriefV001&ptn=-1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "panelStatusBriefV001"
+						},
+						{
+							"key": "ptn",
+							"value": "-1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
