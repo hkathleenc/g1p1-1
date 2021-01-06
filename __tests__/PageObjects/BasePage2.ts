@@ -1,32 +1,37 @@
-import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-    WebElement,
-  } from "selenium-webdriver";
-  import { elementLocated } from "selenium-webdriver/lib/until";
-  const chromedriver = require("chromedriver");
+import { Builder, By, Capabilities, WebDriver } from "selenium-webdriver"
 
-async getElement(elementBy: By): Promise<WebElement> {
-    await this.driver.wait(until.elementLocated(elementBy));
-    let element = await this.driver.findElement(elementBy);
-    await this.driver.wait(until.elementIsVisible(element));
-    return element;
-}
+const chromedriver = require('chromedriver')
 
-async click(elementBy: By): Promise<void> {
-    let element = await this.getElement(elementBy);
-    await this.driver.wait(until.elementIsEnabled(element));
-    return await element.click();
+const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
+class Basepage {
+    url: string
+    driver: WebDriver
+    userName: By = By.css('#username')
+    password: By = By.css('#password')
+    logIn: By = By.css('#submit')
+  
+    constructor(url?: string, driver?: Webdriver) {
+        if (url) this.https://smartlink.secure.direct/7.95/html/login.php = url
+        if (driver) this.driver = driver
+        else this.getDriver
+    }
+    getDriver() {
+        if (this.driver)
+        return this.driver
+        else
+        return new Builder().withCapabilities(Capabilities.chrome()).build()
+    }
+    async navigate() {
+        await this.driver.get(this.url)
+    }
 }
-This methods helped me
-async selectSignIn(): Promise<void> {
-    await this.click(this.signIn)
-}
-async inputUserName(username: string): Promise<void> {
-    let input = await this.getElement(this.username);
-    await this.driver.wait(until.elementIsEnabled(input));
-    return input.sendKeys(username)
-}
+test('SmartLink Login', async () => {
+    await (await driver).get('https://smartlink.secure.direct/7.95/html/login.php')
+    const userName: By = By.css('#username')
+    const passWord: By = By.css('#password')
+    const logIn: By = By.css('#submit')
+   await (await driver).findElement(userName).sendKeys('hw120120')
+   await (await driver).findElement(passWord).sendKeys('123456')
+   await(await driver).findElement(logIn).click
+   })
+
