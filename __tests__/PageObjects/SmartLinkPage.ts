@@ -31,6 +31,8 @@ import { textChangeRangeIsUnchanged } from "typescript";
       new_confirmPwd:By = By.name("form[new_contact][confim_password]");
       new_pin:By = By.name("form[new_contact][alarm_user_pin]");
       new_verbalPwd:By = By.name("form[new_contact][verbal_password]");
+      // Added by Steven Cooper 1/5/2021 to get panel status
+      panelStatus:By = By.xpath('//div[@id="panel_status"]//p[@class="_4 panelStatus"]');
 
       // constructor
       constructor(options) {
