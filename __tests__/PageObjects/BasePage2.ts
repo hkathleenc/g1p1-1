@@ -10,7 +10,7 @@ class Basepage {
     password: By = By.css('#password')
     logIn: By = By.css('#submit')
   
-    constructor(url?: string, driver?: Webdriver) {
+    constructor(url?: string, driver?: WebDriver) {
         if (url) this.https://smartlink.secure.direct/7.95/html/login.php = url
         if (driver) this.driver = driver
         else this.getDriver
