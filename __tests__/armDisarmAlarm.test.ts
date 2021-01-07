@@ -36,29 +36,68 @@ describe("Arming and Disarming the Alarm System", () => {
     const page = new SmartLinkPage({ browser: "chrome" });
     afterAll(async () => {
         //await page.driver.close();
-        await page.driver.quit();
+        //await page.driver.quit();
     });
 // Set up the chrome brwoser, and login to the website.
     test("Navigate to Smartlink and Login", async () => {
         await page.login();
         
     });
-// Get the current status of the alarm system for future 
-// commands
-    test("Get the panel status and store it as a string", async () => {
-        const currentStatus = await page.getText(page.panelStatus);
-        expect(currentStatus).toEqual("Disarmed" || "Armed Away" || "Armed Stay");
+// Get the current status of the alarm system and act on it.
+    test("Get the panel status and either arm or disarm.", async () => {
+        jest.setTimeout(60000);
+        var currentStatus = await page.getText(page.panelStatus);
+        //expect(currentStatus).toBe("Disarmed" || "Armed Away" || "Armed Stay");
+        expect(currentStatus == "Disarmed" || "Armed Stay");
         console.log("The panel is currently " + currentStatus);
+        if (currentStatus == "Disarmed") {
+            await page.clickArmingButton();
+            var currentStatus = await page.getText(page.panelStatus);
+            expect(currentStatus).toEqual("Armed Stay");
+            return console.log("The panel is now Armed!");
+        } else {
+            await page.clickDisarmButton();
+            var currentStatus = await page.getText(page.panelStatus);
+            expect(currentStatus).toEqual("Disarmed");
+            return console.log("The panel is now Disarmed!");
+        }
     });
-// Need to add switch to arm or disarm and update the currentStatus value
 
+// Now that you have done one part of the test, do the opposite
+    test("Arm or disarm the panel again.", async () => {
+        jest.setTimeout(60000);
+        var currentStatus = await page.getText(page.panelStatus);
+        //expect(currentStatus).toBe("Disarmed" || "Armed Away" || "Armed Stay");
+        expect(currentStatus == "Disarmed" || "Armed Stay");
+        console.log("The panel is currently " + currentStatus);
+        if (currentStatus == "Disarmed") {
+            await page.clickArmingButton();
+            var currentStatus = await page.getText(page.panelStatus);
+            expect(currentStatus).toEqual("Armed Stay");
+            console.log("The panel is now Armed!");
+        } else {
+            await page.clickDisarmButton();
+            var currentStatus = await page.getText(page.panelStatus);
+            expect(currentStatus).toEqual("Disarmed");
+            console.log("The panel is now Disarmed!");
+        }
+    });
 
-// Need to add switch to arm or disam and update the currentStatus value
-
-
-// At this point, my test will have been completed. Check the currentStatus 
-// value again, and make sure that we leave the panel in a disarmed state
-// IF currentStatus !== "Disarmed", disarm panel. ELSE driver.quit();
-    
+// At this point, we have armed and disarmed. Now make sure to 
+// leave the panel n a disarmed state before finishing the test.
+    test("Make sure the panel is disarmed.", async () => {
+        jest.setTimeout(60000);
+        var currentStatus = await page.getText(page.panelStatus);
+        if (currentStatus == "Disarmed") {
+            console.log("All done here.");
+            driver.quit();
+        } else {
+            await page.clickDisarmButton();
+            var currentStatus = await page.getText(page.panelStatus);
+            expect(currentStatus).toEqual("Disarmed");
+            console.log("The panel is Disarmed now. Go have a beer.");
+            driver.quit();
+        }
+    });
     
 });
