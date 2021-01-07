@@ -48,9 +48,17 @@ describe("Arming and Disarming the Alarm System", () => {
     test("Get the panel status and store it as a string", async () => {
         const currentStatus = await page.getText(page.panelStatus);
         expect(currentStatus).toEqual("Disarmed" || "Armed Away" || "Armed Stay");
-        console.log(currentStatus);
+        console.log("The panel is currently " + currentStatus);
     });
-// Need to add switch to disarm, arm, disarm the system...
+// Need to add switch to arm or disarm and update the currentStatus value
+
+
+// Need to add switch to arm or disam and update the currentStatus value
+
+
+// At this point, my test will have been completed. Check the currentStatus 
+// value again, and make sure that we leave the panel in a disarmed state
+// IF currentStatus !== "Disarmed", disarm panel. ELSE driver.quit();
     
     
 });
