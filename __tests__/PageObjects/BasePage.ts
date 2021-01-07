@@ -74,7 +74,7 @@ import {
      */
     async click(elementBy: By): Promise<void> {
       let element = await this.getElement(elementBy);
-      await this.driver.wait(until.elementIsEnabled(element));
+      await this.driver.wait(until.elementLocated(elementBy));
       return await element.click();
     }
     /**
