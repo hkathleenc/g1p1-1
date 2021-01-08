@@ -38,9 +38,7 @@ import {
       // Button to cancel deletion of sub-user
       cancelDelete:By = By.xpath('//span[text()="Cancel"]')
       
-      
-    
-
+  
       // constructor
       constructor(options) {
         super(options);
