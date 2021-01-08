@@ -125,30 +125,6 @@ import {
         var currentStatus = await this.getText(this.panelStatus);
         return currentStatus;
       }
-    
-    /**
-     * Tests whether the home page's navigation menu is expanded. 
-     */
-    async NavMenuDisplayed() {
-      await this.driver.wait(until.elementLocated(this.headerLogo))
-      let menuDisplayed: boolean = await this.driver.findElement(By.className("menu")).isDisplayed();
-      return menuDisplayed;
-    }
-
-    /**
-     * Navigates from the home page to the Account: Users page, using the UI. 
-     */
-    async goToUsersPage() {
-      // If navigation menu is not present, click the list icon to expand it.
-      if(!this.NavMenuDisplayed()) {
-        await this.click(this.menuIcon);
-      }
-      // Click the navigation menu's "Users" button.
-      // Get a list of the elements in the navigation menu. 
-      let list = await this.driver.findElements(By.css("a.menu_link._8"));
-      // Wait for headerLogo to be visible to ensure Users page has loaded. 
-      await this.driver.wait(until.elementLocated(this.headerLogo));
-    }
 
     /**
      * Logs in and navigates to the user's page.
