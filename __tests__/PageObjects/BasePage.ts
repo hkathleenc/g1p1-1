@@ -1,67 +1,63 @@
 import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-    WebElement,
-  } from "selenium-webdriver";
-  const fs = require("fs");
-  const chromedriver = require("chromedriver");
-  const geckodriver = require("geckodriver");
-  
-  /** Optional parameters for the page object */
-  interface Options {
-    /** if no driver is supplied, we make one */
-    driver?: WebDriver;
-    /** if no driver is supplied, will check for preferred browser (default chrome) */
-    browser?: "chrome" | "firefox";
-    /** some pages may have a base url */
-    url?: string;
+  Builder,
+  By,
+  Capabilities,
+  until,
+  WebDriver,
+  WebElement,
+} from "selenium-webdriver";
+const fs = require("fs");
+const chromedriver = require("chromedriver");
+const geckodriver = require("geckodriver");
+
+/** Optional parameters for the page object */
+interface Options {
+  /** if no driver is supplied, we make one */
+  driver?: WebDriver;
+  /** if no driver is supplied, will check for preferred browser (default chrome) */
+  browser?: "chrome" | "firefox";
+  /** some pages may have a base url */
+  url?: string;
+}
+
+export class Basepage {
+  driver: WebDriver;
+  url:string = "https://smartlink.secure.direct/7.95/html/login.php"
+    userName: By = By.id('#user-name')
+    password: By = By.css('#password')
+    logIn: By = By.css('#submit')
+    headerLogo: By = By.className("lite-site-banner-image-010")
+    menuIcon: By = By.xpath('//div[@class = "icon menuIcon"]')
+    logout: By = By.xpath('//a[text()= "Logout"]')
+  /**
+   *
+   * @param {Options} options - optional paramaters for the base page object.
+   * @property {WebDriver} options.driver - if no driver is provided, one will be created
+   * @property {string} options.url - provide this if the page has a base url
+   */
+  constructor(options?: Options) {
+    if (options && options.driver) this.driver = options.driver;
+    if (
+      options &&
+      options.browser &&
+      options.browser == "firefox" &&
+      options.driver == undefined
+    )
+      this.driver = new Builder()
+        .withCapabilities(Capabilities.firefox())
+        .build();
+    else
+      this.driver = new Builder()
+        .withCapabilities(Capabilities.chrome())
+        .build();
+    if (options && options.url) this.url = options.url;
   }
-  
-  export class Basepage {
-    driver: WebDriver;
-    url: string;
-    /**
-     *
-     * @param {Options} options - optional paramaters for the base page object.
-     * @property {WebDriver} options.driver - if no driver is provided, one will be created
-     * @property {string} options.url - provide this if the page has a base url
-     */
-    constructor(options?: Options) {
-      if (options && options.driver) this.driver = options.driver;
-      if (
-        options &&
-        options.browser &&
-        options.browser == "firefox" &&
-        options.driver == undefined
-      )
-        this.driver = new Builder()
-          .withCapabilities(Capabilities.firefox())
-          .build();
-      else
-        this.driver = new Builder()
-          .withCapabilities(Capabilities.chrome())
-          .build();
-      if (options && options.url) this.url = options.url;
+    getDriver() {
+        if (this.driver)
+        return this.driver
+        else
+        return new Builder().withCapabilities(Capabilities.chrome()).build()
     }
-    /**
-     * navigates to the url passed in, or to the one stored on the page object
-     * @param {string} url - the url to navigate to, unless you wish to use the page's defined base url
-     */
-    async navigate(url?: string): Promise<void> {
-      if (url) return await this.driver.get(url);
-      else if (this.url) return await this.driver.get(this.url);
-      else
-        return Promise.reject(
-          "BasePage.navigate() needs a URL defined on the page object, or one passed in. No URL was provided."
-        );
-    }
-    /**
-     * waits for the identified element to be located and visible before returning it.
-     * @param {By} elementBy - the locator for the element to return.
-     */
     async getElement(elementBy: By): Promise<WebElement> {
       await this.driver.wait(until.elementLocated(elementBy));
       let element = await this.driver.findElement(elementBy);
@@ -123,8 +119,16 @@ import {
         (e) => {
           if (e) console.log(e);
           else console.log("screenshot saved successfully");
-        }
-      );
-    }
-  }
+          }
+        )}
   
+    async navigate() {
+        await this.driver.get(this.url)
+        await this.driver.wait(
+            until.elementIsEnabled(await this.getElement(this.headerLogo))
+          );
+        }
+    }
+
+
+
