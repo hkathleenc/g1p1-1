@@ -12,7 +12,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"",
 							"pm.test(\"get arminglevel\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    var armingLevel = jsonData.armingLevel;",
@@ -233,12 +232,12 @@
 						},
 						{
 							"key": "form[login]",
-							"value": "hw120120",
+							"value": "{{username}}",
 							"type": "text"
 						},
 						{
 							"key": "form[password]",
-							"value": "123456",
+							"value": "{{password}}",
 							"type": "text"
 						},
 						{
@@ -280,7 +279,7 @@
 			"response": []
 		},
 		{
-			"name": "arm away from current arming level",
+			"name": "Arm Away from Current Arming Level",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -430,7 +429,7 @@
 			"response": []
 		},
 		{
-			"name": "disarm from current arming level",
+			"name": "Disarm from Current Arming Level",
 			"request": {
 				"method": "POST",
 				"header": [
