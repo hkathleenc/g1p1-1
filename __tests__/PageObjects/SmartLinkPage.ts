@@ -35,6 +35,8 @@ export class SmartLinkPage extends BasePage {
     // Deletion Confirmation Page:
     // Confirmation "Delete" button
     confirmDelete:By = By.xpath('//span[text()="Delete"]');
+    // Added by Anita
+    logout: By = By.xpath('//a[text()= "Logout"]');
     
     
   
