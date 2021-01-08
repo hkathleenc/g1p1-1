@@ -1,3 +1,4 @@
+//import { SSL_OP_EPHEMERAL_RSA } from "constants";
 import {
     Builder,
     By,
@@ -5,7 +6,9 @@ import {
     until,
     WebDriver,
   } from "selenium-webdriver";
-  import { textChangeRangeIsUnchanged } from "typescript";
+
+import { textChangeRangeIsUnchanged } from "typescript";
+
   import {BasePage} from "./BasePage";
 
   export class SmartLinkPage extends BasePage {
@@ -30,14 +33,31 @@ import {
       // Button to navigate to account page
       userNavButton: By = By.xpath("/html/body/div[1]/div/div[1]/div[2]/div[4]/div[4]/div/div[3]/a");
       // User Page Elements:
+    
       // Individual user element
       indivUser:By = By.className("contactTop");
       // Deletion Confirmation Page:
       // Confirmation "Delete" button
       confirmDelete:By = By.xpath('//span[text()="Delete"]');
-      
-      
-    
+      // input fields for adding a new user:
+      new_username: By = By.name("form[new_contact][username]");
+      // check availability button
+      new_password: By = By.name("form[new_contact][password]");
+      new_confirmPwd:By = By.name("form[new_contact][confim_password]");
+      new_pin:By = By.name("form[new_contact][alarm_user_pin]");
+      new_verbalPwd:By = By.name("form[new_contact][verbal_password]");
+      // Added by Steven Cooper 1/5/2021 to get panel status
+      panelStatus:By = By.xpath('//div[@id="panel_status"]//p[@class="_4 panelStatus"]');
+      // Added by Steven Cooper 1/6/2021 to get arm/disarm buttons.
+      armAwayButton:By = By.xpath('//img[@id="armedAway_icon"]');
+      disarmButton:By = By.xpath('//img[@id="disarm_icon"]');
+      // Added by Steven Cooper 1/6/2021 to catch arming icon.
+      armingIcon:By = By.xpath('//img[@id="arming_icon"]');
+      // Built this function to sleep for a while before checking
+      // If the panel is armed. Steven Cooper 1/6/2021
+      sleep(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms));
+      }
 
       // constructor
       constructor(options) {
@@ -167,9 +187,30 @@ import {
 
 
 
+      // Built this to click the arm button.
+      // Steven Cooper 1/6/20201
+      async clickArmingButton() {
+        await this.getElement(this.armAwayButton);
+        await this.click(this.armAwayButton);
+        await this.getElement(this.armingIcon);
+        await this.sleep(70000);
+        //await this.getElement(this.disarmButton);
+      }
 
+      // Built this to click the disarm button.
+      // Steven Cooper 1/6/2021
+      async clickDisarmButton() {
+        await this.getElement(this.disarmButton);
+        await this.click(this.disarmButton);
+        await this.sleep(7500);
+        //await this.getElement(this.armAwayButton);
+      }
+      // Built this to return the panel status to me outside 
+      // of a test on my test page. Steven Cooper 1/6/2021
+      async getPanelStatus() {
+        var currentStatus = await this.getText(this.panelStatus);
+        return currentStatus;
+      }
 
-
-    
 
   }
