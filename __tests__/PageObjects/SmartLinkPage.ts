@@ -1,3 +1,4 @@
+//import { SSL_OP_EPHEMERAL_RSA } from "constants";
 import {
     Builder,
     By,
@@ -5,7 +6,7 @@ import {
     until,
     WebDriver,
   } from "selenium-webdriver";
-import { textChangeRangeIsUnchanged } from "typescript";
+//import { textChangeRangeIsUnchanged } from "typescript";
   import {BasePage} from "./BasePage";
 
   export class SmartLinkPage extends BasePage {
@@ -33,7 +34,16 @@ import { textChangeRangeIsUnchanged } from "typescript";
       new_verbalPwd:By = By.name("form[new_contact][verbal_password]");
       // Added by Steven Cooper 1/5/2021 to get panel status
       panelStatus:By = By.xpath('//div[@id="panel_status"]//p[@class="_4 panelStatus"]');
-
+      // Added by Steven Cooper 1/6/2021 to get arm/disarm buttons.
+      armAwayButton:By = By.xpath('//img[@id="armedAway_icon"]');
+      disarmButton:By = By.xpath('//img[@id="disarm_icon"]');
+      // Added by Steven Cooper 1/6/2021 to catch arming icon.
+      armingIcon:By = By.xpath('//img[@id="arming_icon"]');
+      // Built this function to sleep for a while before checking
+      // If the panel is armed. Steven Cooper 1/6/2021
+      sleep(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms));
+      }
       // constructor
       constructor(options) {
         super(options);
@@ -69,6 +79,32 @@ import { textChangeRangeIsUnchanged } from "typescript";
           // Click "login" to submit username and password
           await this.getElement(this.log_in);
           await this.click(this.log_in);
+      }
+      
+      
+      // Built this to click the arm button.
+      // Steven Cooper 1/6/20201
+      async clickArmingButton() {
+        await this.getElement(this.armAwayButton);
+        await this.click(this.armAwayButton);
+        await this.getElement(this.armingIcon);
+        await this.sleep(70000);
+        //await this.getElement(this.disarmButton);
+      }
+
+      // Built this to click the disarm button.
+      // Steven Cooper 1/6/2021
+      async clickDisarmButton() {
+        await this.getElement(this.disarmButton);
+        await this.click(this.disarmButton);
+        await this.sleep(7500);
+        //await this.getElement(this.armAwayButton);
+      }
+      // Built this to return the panel status to me outside 
+      // of a test on my test page. Steven Cooper 1/6/2021
+      async getPanelStatus() {
+        var currentStatus = await this.getText(this.panelStatus);
+        return currentStatus;
       }
 
   }
