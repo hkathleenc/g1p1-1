@@ -1,4 +1,3 @@
-//import { SSL_OP_EPHEMERAL_RSA } from "constants";
 import {
     Builder,
     By,
@@ -6,7 +5,7 @@ import {
     until,
     WebDriver,
   } from "selenium-webdriver";
-//import { textChangeRangeIsUnchanged } from "typescript";
+
   import {BasePage} from "./BasePage";
 
   export class SmartLinkPage extends BasePage {
@@ -44,35 +43,20 @@ import {
       sleep(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms));
       }
-    
-        // Account page URL
-    accountURL: string = "https://smartlink.secure.direct/7.95/html/account_docs/account_lite_contacts.php";
-    // Login Page Elements:
-    // login page logo
-    headerLogo: By = By.className("lite-site-banner-image-010");
-    // username input field
-    username:By = By.id("user-name");
-    // password input field
-    password:By = By.name("form[password]");
-    // button to submit username/password and log in
-    log_in:By = By.id("submit");
-    // Landing Page Elements:
-    // flag that navigation index is visible
-    listIsVisible:By = By.className("lite-menu-login-status-item-box lite-welcome-msg");
-    // Menu icon (expands navigation menu when clicked)
-    menuIcon:By = By.css("div.icon.menuIcon");
-    // Class of navigation button elements from drop-down list
-    menuButtons:By = By.className("menu_row_box");
-    // Button to navigate to account page
-    userNavButton: By = By.xpath("/html/body/div[1]/div/div[1]/div[2]/div[4]/div[4]/div/div[3]/a");
-    // User Page Elements:
-    // Individual user element
-    indivUser:By = By.className("contactTop");
-    // Deletion Confirmation Page:
-    // Confirmation "Delete" button
-    confirmDelete:By = By.xpath('//span[text()="Delete"]');
-    // Added by Anita
-    logout: By = By.xpath('//a[text()= "Logout"]');
+      // Account page URL
+      accountURL: string = "https://smartlink.secure.direct/7.95/html/account_docs/account_lite_contacts.php";
+      // Menu icon (expands navigation menu when clicked)
+      menuIcon:By = By.css("div.icon.menuIcon");
+      // Class of navigation button elements from drop-down list
+      menuButtons:By = By.className("menu_row_box");
+      // User Page Elements:
+      // Individual user element
+      indivUser:By = By.className("contactTop");
+      // Deletion Confirmation Page:
+      // Confirmation "Delete" button
+      confirmDelete:By = By.xpath('//span[text()="Delete"]');
+      // Added by Anita
+      logout: By = By.xpath('//a[text()= "Logout"]');
     
     
       // constructor
@@ -137,19 +121,6 @@ import {
         var currentStatus = await this.getText(this.panelStatus);
         return currentStatus;
       }
-
-    /**
-     * This function gets a web page element, clicks it, and enters
-     * user-designated text.
-     * 
-     * @param element - Element that will receive text
-     * @param input - text to be entered into the element
-     */
-    async clickAndEnter(element:By, input:string) {
-      await this.getElement(element);
-      await this.click(element);
-      await this.setInput(element, input);
-    }
     
     /**
      * Tests whether the home page's navigation menu is expanded. 
