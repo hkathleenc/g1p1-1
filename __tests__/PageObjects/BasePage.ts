@@ -1,15 +1,18 @@
 import { Builder, By, until, WebElement, Capabilities, WebDriver } from "selenium-webdriver"
+
 const chromedriver = require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
-class Basepage {
+import {SmartLinkPage} from "./SmartLinkPage";
+export class BasePage {
     url = "https://smartlink.secure.direct/7.95/html/login.php"
     driver: WebDriver
-    userName: By = By.id('#user-name')
-    password: By = By.css('#password')
-    logIn: By = By.css('#submit')
-    headerLogo: By = By.className("lite-site-banner-image-010")
+    username:By = By.id("user-name");
+    password:By = By.name("form[password]");
+     headerLogo: By = By.className("lite-site-banner-image-010")
     menuIcon: By = By.xpath('//div[@class = "icon menuIcon"]')
     logout: By = By.xpath('//a[text()= "Logout"]')
+
+    
     
  constructor(url?: string, driver?: WebDriver) {
         if (url) this.url = url
@@ -34,7 +37,27 @@ class Basepage {
             until.elementIsEnabled(await this.getElement(this.headerLogo))
           );
         }
+    /**
+     * clicks the given element after waiting for it
+     * @param {By} elementBy - the locator for the element to click
+     */
+    async click(elementBy: By): Promise<void> {
+      let element = await this.getElement(elementBy);
+      await this.driver.wait(until.elementLocated(elementBy));
+      return await element.click();
     }
+    /**
+     * clears the given element after waiting for it, and then sends the provided keys
+     * @param {By} elementBy - the locator for the element to clear and sendKeys to
+     * @param {any} keys - the string or list of keys to send
+     */
+    async setInput(elementBy: By, keys: any): Promise<void> {
+      let input = await this.getElement(elementBy);
+      await this.driver.wait(until.elementIsEnabled(input));
+      await input.clear();
+      return input.sendKeys(keys);
+    }
+  }
 
 
 
