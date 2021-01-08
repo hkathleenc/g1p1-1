@@ -6,9 +6,9 @@ import {
     WebDriver,
   } from "selenium-webdriver";
   import { textChangeRangeIsUnchanged } from "typescript";
-  import {BasePage} from "./BasePage";
+  import {Basepage} from "./BasePage";
 
-  export class SmartLinkPage extends BasePage {
+  export class SmartLinkPage extends Basepage {
       // Account page URL
       accountURL: string = "https://smartlink.secure.direct/7.95/html/account_docs/account_lite_contacts.php";
       // Login Page Elements:
@@ -35,10 +35,10 @@ import {
       // Deletion Confirmation Page:
       // Confirmation "Delete" button
       confirmDelete:By = By.xpath('//span[text()="Delete"]');
+      // Button to cancel deletion of sub-user
+      cancelDelete:By = By.xpath('//span[text()="Cancel"]')
       
-      
-    
-
+  
       // constructor
       constructor(options) {
         super(options);
@@ -74,6 +74,7 @@ import {
           // Click "login" to submit username and password
           await this.getElement(this.log_in);
           await this.click(this.log_in);
+          await this.waitToLoad(this.headerLogo)
       }
       
       /**
@@ -164,12 +165,5 @@ import {
         await this.waitToLoad(this.confirmDelete)
         await this.driver.sleep(1000)
       }
-
-
-
-
-
-
-    
 
   }
