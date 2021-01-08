@@ -88,7 +88,7 @@ import { textChangeRangeIsUnchanged } from "typescript";
         await this.getElement(this.armAwayButton);
         await this.click(this.armAwayButton);
         await this.getElement(this.armingIcon);
-        await this.sleep(60000);
+        await this.sleep(70000);
         //await this.getElement(this.disarmButton);
       }
 
@@ -97,7 +97,7 @@ import { textChangeRangeIsUnchanged } from "typescript";
       async clickDisarmButton() {
         await this.getElement(this.disarmButton);
         await this.click(this.disarmButton);
-        await this.sleep(5000);
+        await this.sleep(7500);
         //await this.getElement(this.armAwayButton);
       }
       // Built this to return the panel status to me outside 
