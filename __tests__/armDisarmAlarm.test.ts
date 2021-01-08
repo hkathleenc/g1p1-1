@@ -11,25 +11,7 @@
     // Haley, Helen, and Anita.
 
 
-
-
-
-import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-  } from "selenium-webdriver";
-import { isComputedPropertyName } from "typescript";
-
-  import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
-  
-  const chromedriver = require("chromedriver");
-  
-  const driver: WebDriver = new Builder()
-    .withCapabilities(Capabilities.chrome())
-    .build();
+import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
 
 
 describe("Arming and Disarming the Alarm System", () => {

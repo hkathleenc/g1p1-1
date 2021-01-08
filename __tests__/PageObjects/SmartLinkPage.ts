@@ -1,4 +1,4 @@
-import { SSL_OP_EPHEMERAL_RSA } from "constants";
+//import { SSL_OP_EPHEMERAL_RSA } from "constants";
 import {
     Builder,
     By,
@@ -6,7 +6,7 @@ import {
     until,
     WebDriver,
   } from "selenium-webdriver";
-import { textChangeRangeIsUnchanged } from "typescript";
+//import { textChangeRangeIsUnchanged } from "typescript";
   import {BasePage} from "./BasePage";
 
   export class SmartLinkPage extends BasePage {
@@ -43,7 +43,7 @@ import { textChangeRangeIsUnchanged } from "typescript";
       // If the panel is armed. Steven Cooper 1/6/2021
       sleep(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms));
-      };
+      }
       // constructor
       constructor(options) {
         super(options);
