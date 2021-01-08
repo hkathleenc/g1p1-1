@@ -34,7 +34,7 @@ describe("User deletion works", () => {
     });
     test("User can delete one sub-user account", async () => {
         /*
-        Tests that a user can successfully delete an account.
+        This test verifies that a user can successfully delete an account.
         This particular test deletes the last sub-user listed in the account's user list.
         Steps:
             1. Log in to SmartLink account
@@ -45,15 +45,14 @@ describe("User deletion works", () => {
                 c. Site will navigate to a confirmation page. Confirm deletion. 
             4. Test that there is now one fewer user in the account's list of users.
         */
+
         // Log in, and navigate to the User's page from the home page.
         await page.initUserPage();
         // Determine how many users are in the account's list of users.
         let startNumUsers = await page.getNumUsers();
         // Get the index of the last user in the list.
         let lastContactIndex = startNumUsers - 1;
-        expect(lastContactIndex).toBe(3)
         await page.startDeleteUser(lastContactIndex);
-        
         // Press the confirmation page's "Delete" button to delete the sub-user.
         await page.click(page.confirmDelete)
         // This action takes some time
@@ -65,10 +64,10 @@ describe("User deletion works", () => {
         expect(endNumUsers).toBe(startNumUsers - 1)
     });
 
-    /*
+    
     test("User can cancel the deletion of one sub-user account", async () => {
         /*
-        Tests that if a user on an account starts to delete a sub-user on their account,
+        This test verifies that, if a user on an account starts to delete a sub-user on their account,
         but then presses "Cancel" on the deletion confirmation page, the sub-user will
         not be deleted.
         Steps:
@@ -80,18 +79,25 @@ describe("User deletion works", () => {
                 c. Site will navigate to a confirmation page.
                 d. Press cancel
             4. Test that the number of account sub-users has not changed.
-        
+        */
+
         // Log in, and navigate to the User's page from the home page.
         await page.initUserPage();
         // Determine how many users are in the account's list of users.
-        let firstNumUsers = await page.getNumUsers();
+        let startNumUsers = await page.getNumUsers();
         // Get the index of the last user in the list.
-        let lastContactIndex = firstNumUsers - 1;
+        let lastContactIndex = startNumUsers - 1;
         await page.startDeleteUser(lastContactIndex);
         // The browser will return the to the users page. Wait for its header to load before continuing.
-        page.waitToLoad(page.headerLogo)
-        
+        await page.waitToLoad(page.headerLogo)
+        // Click cancel button
+        await page.click(page.cancelDelete)
+        // Wait for action to be completed.
+        await page.driver.sleep(5000)
+        // Get the new number of users in the users list.
+        let endNumUsers = await page.getNumUsers()
+        // The number of users at the end of the test should be the same as the number of users
+        // at the beginning of the test.
+        expect(endNumUsers).toBe(startNumUsers)
     });
-
-    */
 });

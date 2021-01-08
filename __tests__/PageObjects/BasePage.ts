@@ -20,7 +20,7 @@ import {
     url?: string;
   }
   
-  export class BasePage {
+  export class Basepage {
     driver: WebDriver;
     url: string;
     /**
