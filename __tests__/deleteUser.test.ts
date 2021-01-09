@@ -2,7 +2,7 @@
 Author: Helen Cunningham
 Written: 01/02/21
 
-Tests user's ability to successfully delete a sub-user. 
+Tests users' ability to successfully delete a sub-user. 
 Handles cases:
     1. User deletes one sub-user 
     2. User starts to delete a sub-user from the account, and cancels the process.
@@ -10,22 +10,7 @@ Handles cases:
 This test group uses SmartLinkPage.ts, which is a polymorphic class inheriting functionality from BasePage.ts.
 */
 
-
-import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-  } from "selenium-webdriver";
-  import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
-  
-  const chromedriver = require("chromedriver");
-  
-  const driver: WebDriver = new Builder()
-    .withCapabilities(Capabilities.chrome())
-    .build();
-
+import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
 
 describe("User deletion works", () => {
     const page = new SmartLinkPage({ browser: "chrome" });
@@ -34,7 +19,7 @@ describe("User deletion works", () => {
     });
     test("User can delete one sub-user account", async () => {
         /*
-        This test verifies that a user can successfully delete an account.
+        This test verifies that a user can successfully delete a sub-user on their account.
         This particular test deletes the last sub-user listed in the account's user list.
         Steps:
             1. Log in to SmartLink account

@@ -138,68 +138,68 @@ import {
       let element = await this.driver.findElement(this.headerLogo);
       await this.driver.wait(until.elementIsVisible(element));
       // Go to account page
-      await this.driver.get(this.accountURL);
-      // Wait until header logo on User's page is enabled.
-      await this.driver.wait(
-        until.elementIsEnabled(await this.getElement(this.headerLogo))
-      );
-    }
-
-    /**
-     * Returns the account's current number of users.
-     * This number includes the primary account user, which cannot be deleted.
-     */
-    async getNumUsers() {
-      await this.driver.wait(
-        until.elementIsEnabled(await this.getElement(this.headerLogo))
-      );
-      let list = await this.driver.findElements(By.css("div.row.contact"));
-      return list.length;
-    }
-
-    /**
-     * Instructs the browser to wait for the site's header logo to load.
-     */
-    async waitToLoad(elementBy: By) {
-      await this.driver.wait(
-        until.elementIsEnabled(await this.getElement(elementBy))
-      );
-    }
-
-    async signout() {
-      // Navigate to logout page
-        await this.navigate();
-        
-        await this.waitToLoad(this.headerLogo)
-        //Wait for Logout button to be enabled
-        await this.getElement(this.logout);
-        //Click logout button
-        await this.click(this.logout);
-    }
-
-    /**
-     * This function does most of the work for deleting a user 
-     * the account users list. After calling this function, the browser
-     * will navigate to the confirmation page for deleting that user.
-     * This function does NOT, by itself, delete a user.
-     * 
-     * @param userIndex - The array index of the user to be deleted 
-     */
-    async startDeleteUser(userIndex: number) {
-      // Get the index of the last user in the list.
-      // Convert the index into a string
-      let indexString: string = userIndex.toString();
-      // Using the converted index number, create a string that will be used 
-      // to form an xpath to the last user's delete icon.
-      let xpath_userDeleteIcon: string = `//input[@name = "form[delete_contact][${indexString}]"]`;
-      // Wait for last user's delete icon to be enabled.
-      await this.waitToLoad(By.xpath(xpath_userDeleteIcon))
-      // Click the last user's delete icon. 
-      await this.click(By.xpath(xpath_userDeleteIcon));
-      // The browser will navigate to a confirmation page.
-      // Wait for the confirmation page's "Delete" button to be enabled.
-      await this.waitToLoad(this.confirmDelete)
-      await this.driver.sleep(1000)
-    }
-    
+      await this.driver.get(this.accountURL); 
+    // Wait until header logo on User's page is enabled.
+    await this.driver.wait(
+      until.elementIsEnabled(await this.getElement(this.headerLogo))
+    );
   }
+
+  /**
+   * Returns the account's current number of users.
+   * This number includes the primary account user, which cannot be deleted.
+   */
+  async getNumUsers() {
+    await this.driver.wait(
+      until.elementIsEnabled(await this.getElement(this.headerLogo))
+    );
+    let list = await this.driver.findElements(By.css("div.row.contact"));
+    return list.length;
+  }
+
+  /**
+   * Instructs the browser to wait for the site's header logo to load.
+   */
+  async waitToLoad(elementBy: By) {
+    await this.driver.wait(
+      until.elementIsEnabled(await this.getElement(elementBy))
+    );
+  }
+
+  async signout() {
+    // Navigate to logout page
+      await this.navigate();
+      
+      await this.waitToLoad(this.headerLogo)
+      //Wait for Logout button to be enabled
+      await this.getElement(this.logout);
+      //Click logout button
+      await this.click(this.logout);
+  }
+
+  /**
+   * This function does most of the work for deleting a user 
+   * the account users list. After calling this function, the browser
+   * will navigate to the confirmation page for deleting that user.
+   * This function does NOT, by itself, delete a user.
+   * 
+   * @param userIndex - The array index of the user to be deleted 
+   */
+  async startDeleteUser(userIndex: number) {
+    // Get the index of the last user in the list.
+    // Convert the index into a string
+    let indexString: string = userIndex.toString();
+    // Using the converted index number, create a string that will be used 
+    // to form an xpath to the last user's delete icon.
+    let xpath_userDeleteIcon: string = `//input[@name = "form[delete_contact][${indexString}]"]`;
+    // Wait for last user's delete icon to be enabled.
+    await this.waitToLoad(By.xpath(xpath_userDeleteIcon))
+    // Click the last user's delete icon. 
+    await this.click(By.xpath(xpath_userDeleteIcon));
+    // The browser will navigate to a confirmation page.
+    // Wait for the confirmation page's "Delete" button to be enabled.
+    await this.waitToLoad(this.confirmDelete)
+    await this.driver.sleep(1000)
+  }
+  
+}
