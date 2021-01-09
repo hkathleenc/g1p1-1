@@ -1,3 +1,4 @@
+import { Driver } from "selenium-webdriver/chrome";
 import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
 
 
@@ -16,11 +17,12 @@ test('SmartLink login', async () => {
   // Enter password
   await page.clickAndEnter(page.password, "123456");
   await page.click(page.log_in)
+  await page.driver.sleep(5000)
 });
 
 test('SmartLink logout', async () => {
   await page.click(page.menuButtons)
-  jest.setTimeout(5000)
+  await page.driver.sleep(1000)
   await page.click(page.logout)
 });
 }); 
