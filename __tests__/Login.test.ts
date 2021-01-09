@@ -1,35 +1,22 @@
-import {
-  Builder,
-  By,
-  Capabilities,
-  until,
-  WebDriver,
-} from "selenium-webdriver";
-
 import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
 
-const chromedriver = require("chromedriver");
-
-const driver: WebDriver = new Builder()
-  .withCapabilities(Capabilities.chrome())
-  .build();
 
   describe("Login and Logout funtionality works", () => {
-    const page = new SmartLinkPage({ browser: "chrome" })
+    const page = new SmartLinkPage({ browser: "chrome" });
+    afterAll(async () => {
+     page.driver.quit();
+    });
 
  
 
-test('SmartLink login', async () => {
-await driver.get('https://smartlink.secure.direct/7.95/html/login.php')
-//await page.driver.wait(until.elementLocated(By. className("lite-site-banner-image-010")))
-await page.clickAndEnter(page.username, "hw120120");
-  // Enter password
-await page.clickAndEnter(page.password, "123456");
-await page.click(page.log_in)
+  test('SmartLink login', async () => {
+    await page.driver.get(page.url)
+    //await page.driver.wait(until.elementLocated(By. className("lite-site-banner-image-010")))
+    await page.clickAndEnter(page.username, "hw120120");
+    // Enter password
+    await page.clickAndEnter(page.password, "123456");
+    await page.click(page.log_in)
 
-  afterAll(async () => {
-    await page.driver.quit();
-});
+  
   });
-  })
-
+});
