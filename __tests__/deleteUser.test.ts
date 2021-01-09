@@ -10,6 +10,7 @@ Handles cases:
 This test group uses SmartLinkPage.ts, which is a polymorphic class inheriting functionality from BasePage.ts.
 */
 
+
 import {
     Builder,
     By,
@@ -17,7 +18,6 @@ import {
     until,
     WebDriver,
   } from "selenium-webdriver";
-
   import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
   
   const chromedriver = require("chromedriver");
