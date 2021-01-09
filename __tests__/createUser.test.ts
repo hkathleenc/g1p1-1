@@ -1,33 +1,28 @@
-import { BasePage } from "./BasePage";
-import {
-    Builder,
-    By,
-    Capabilities,
-    until,
-    WebDriver,
-} from "selenium-webdriver"; 
 import { SmartLinkPage } from "./PageObjects/SmartLinkPage";
-const chromedriver = require("chromedriver");
-const driver: WebDriver = new Builder()
-.withCapabilities(Capabilities.chrome())
-.build()
-    const smart = new SmartLinkPage(driver)
-    
+
+
+describe("Creating a new user in Smartlink", () => {
+
+    const page = new SmartLinkPage({ browser: "chrome" });
+    afterAll(async () => {
+        //await page.driver.close();
+        page.driver.quit();
+    });
 
     beforeEach(async ()=>{
-        await smart.navigate();
+        await page.navigate();
     });
     test("Can load SmartLink", async ()=> {
-        expect(await smart.click(smart.username ,))
-        expect(await smart.click(smart.password, ))
+        expect(await page.click(page.username ,))
+        expect(await page.click(page.password, ))
         
             console.log("You found it!")
         
     });
     test("Can Log into SmartLink", async ()=> {
-        await smart.setInput(smart.log_in, "HW120120");
-        await smart.setInput(smart.password, "123456");
-        await 
-        await smart.click (smart.log_in, );
+        await page.setInput(page.log_in, "HW120120");
+        await page.setInput(page.password, "123456");
+        await page.click (page.log_in, );
             console.log("You made it! Welcome to the Party! ")
     })
+});
