@@ -6,7 +6,7 @@ import {
     until,
     WebDriver,
 } from "selenium-webdriver"; 
-import { SmartLinkPage } from "./SmartLinkPage";
+import { SmartLinkPage } from "./PageObjects/SmartLinkPage";
 const chromedriver = require("chromedriver");
 const driver: WebDriver = new Builder()
 .withCapabilities(Capabilities.chrome())
@@ -30,4 +30,4 @@ const driver: WebDriver = new Builder()
         await 
         await smart.click (smart.log_in, );
             console.log("You made it! Welcome to the Party! ")
-    });
+    })
