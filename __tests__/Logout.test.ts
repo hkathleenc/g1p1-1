@@ -24,7 +24,7 @@ const driver: WebDriver = new Builder()
         await page.clickAndEnter(page.password, "123456");
         await page.click(page.log_in)
         await page.driver.wait(
-          until.elementIsEnabled(await page.getElement(page.menuButtons))
+          until.elementIsEnabled(await page.getElement(page.menuButtons)))
         await page.click(page.menuButtons);
       })
     })    
