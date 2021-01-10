@@ -48,7 +48,7 @@ export class SmartLinkPage extends BasePage {
     // Menu icon (expands navigation menu when clicked)
     menuIcon:By = By.css("div.icon.menuIcon");
     // Class of navigation button elements from drop-down list
-    menuButtons:By = By.className("menu_row_box");
+    menuButtons:By = By.css('.menuIcon');
     // User Page Elements:
     // Individual user element
     indivUser:By = By.className("contactTop");
@@ -56,7 +56,7 @@ export class SmartLinkPage extends BasePage {
     // Confirmation "Delete" button
     confirmDelete:By = By.xpath('//span[text()="Delete"]');
     // Added by Anita
-    logout: By = By.xpath('//a[text()= "Logout"]');
+    logout: By = By.xpath('//a[text()="Logout"]')
     // Added by Haley
     Name: By = By.xpath('//input[@name="form[new_contact][name]"]');
     // This is to add a name to the new user, not a username.-HF

@@ -18,7 +18,7 @@ import {SmartLinkPage} from "./PageObjects/SmartLinkPage";
     // Enter password
     await page.clickAndEnter(page.password, "123456");
     await page.click(page.log_in)
-
+    await page.driver.sleep(5000)
   
   });
 });
