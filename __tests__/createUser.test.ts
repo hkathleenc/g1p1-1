@@ -5,7 +5,7 @@ import {
     until,
     WebDriver,
 } from "selenium-webdriver"; 
-import { SmartLinkPage } from "./SmartLinkPage";
+import { SmartLinkPage } from "./PageObjects/SmartLinkPage";
 import { Console } from "console";
 const chromedriver = require("chromedriver");
 const driver: WebDriver = new Builder()
