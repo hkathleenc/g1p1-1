@@ -62,6 +62,7 @@ export class SmartLinkPage extends BasePage {
     // This is to add a name to the new user, not a username.-HF
     addUser: By =By.xpath('//button[@name ="form[add_new_contact]"]');
     //This is to add a new user-HF
+    saveNewUser: By = By.className("alert_status_text")
     
     // Button to cancel deletion of sub-user
     cancelDelete:By = By.xpath('//span[text()="Cancel"]')
