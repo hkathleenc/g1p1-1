@@ -1,0 +1,19 @@
+[0109/192456.965:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192456.966:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192456.967:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/192456.968:ERROR:exception_snapshot_win.cc(99)] thread ID 12384 not found in process
+[0109/192456.967:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/192456.979:ERROR:exception_snapshot_win.cc(99)] thread ID 19828 not found in process
+[0109/192457.021:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.021:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.021:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.021:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.021:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.021:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/192457.021:ERROR:exception_snapshot_win.cc(99)] thread ID 9016 not found in process
+[0109/192457.029:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.029:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.029:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.029:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0109/192457.029:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0109/192457.029:ERROR:exception_snapshot_win.cc(99)] thread ID 19712 not found in process
