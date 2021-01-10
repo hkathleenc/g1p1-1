@@ -2,7 +2,7 @@ import { Builder, By, until, WebElement, Capabilities, WebDriver } from "seleniu
 const chromedriver = require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 const fs = require("fs")
-export class Basepage {
+export class BasePage {
     url = "https://smartlink.secure.direct/7.95/html/login.php"
     driver: WebDriver
     userName: By = By.id('#user-name')
