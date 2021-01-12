@@ -38,8 +38,6 @@ export class SmartLinkPage extends BasePage {
     disarmButton:By = By.xpath('//img[@id="disarm_icon"]');
     // Added by Steven Cooper 1/6/2021 to catch arming icon.
     armingIcon:By = By.xpath('//img[@id="arming_icon"]');
-    // Built this function to sleep for a while before checking
-    // If the panel is armed. Steven Cooper 1/6/2021
     sleep(ms: number) {
       return new Promise( resolve => setTimeout(resolve, ms));
     }
@@ -62,8 +60,9 @@ export class SmartLinkPage extends BasePage {
     // This is to add a name to the new user, not a username.-HF
     addUser: By =By.xpath('//button[@name ="form[add_new_contact]"]');
     //This is to add a new user-HF
-    saveNewUser: By = By.xpath('//button[@name ="form[add_new_contact]"]');
-    
+    // Steven Cooper - Updated xpath by to click save button
+    saveNewUser: By = By.xpath('//button[@id="save_contact_post"]');
+    clickEmpty: By = By.xpath('//div[@class="lite-2013-layout-box-primary-000"]');
     // Button to cancel deletion of sub-user
     cancelDelete:By = By.xpath('//span[text()="Cancel"]')
 
