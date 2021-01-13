@@ -73,9 +73,9 @@ export class BasePage {
    * @param {By} elementBy - the locator for the element to click
    */
   async click(elementBy: By): Promise<void> {
-   // let element = await this.getElement(elementBy);
-    //await this.driver.wait(until.elementIsEnabled(element));
-    //return await element.click();
+    let element = await this.getElement(elementBy);
+    await this.driver.wait(until.elementIsEnabled(element));
+    return await element.click();
     //added by Anita Daines
     let myElement = await this.driver.wait(until.elementLocated(elementBy))
        return await myElement.click()
@@ -131,6 +131,3 @@ export class BasePage {
     );
   }
 }
-
-
-

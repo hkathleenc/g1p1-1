@@ -27,10 +27,10 @@ export class SmartLinkPage extends BasePage {
     // input fields for adding a new user:
     new_username: By = By.name("form[new_contact][username]");
     // check availability button
-    new_password: By = By.name("form[new_contact][password]");
-    new_confirmPwd:By = By.name("form[new_contact][confim_password]");
+    new_password: By = By.xpath('//input[@name = "form[new_contact][password]"]');
+    new_confirmPwd:By = By.xpath('//input[@name = "form[new_contact][confirm_password]"]');
     new_pin:By = By.name("form[new_contact][alarm_user_pin]");
-    new_verbalPwd:By = By.name("form[new_contact][verbal_password]");
+    new_verbalPwd:By = By.xpath('//input[@name="form[new_contact][verbal_password]"]');
     // Added by Steven Cooper 1/5/2021 to get panel status
     panelStatus:By = By.xpath('//div[@id="panel_status"]//p[@class="_4 panelStatus"]');
     // Added by Steven Cooper 1/6/2021 to get arm/disarm buttons.
@@ -228,5 +228,3 @@ export class SmartLinkPage extends BasePage {
   }
   
 }
-
-
