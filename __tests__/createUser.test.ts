@@ -49,4 +49,3 @@ const driver: WebDriver = new Builder()
     
    });
 
-   // This is my version before my group made it thiers... kinda sad buut whatever this is how I would do the test. 
