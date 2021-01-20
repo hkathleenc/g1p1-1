@@ -63,4 +63,4 @@ describe("Create a New User", () => {
     await(smart.driver.sleep(5000))
    });
 });
-   // This is my version before my group made it thiers... kinda sad buut whatever this is how I would do the test. 
+   
