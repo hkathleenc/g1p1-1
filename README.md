@@ -1,5 +1,5 @@
 # g1p1-1
-DevMountain Part Time QA Group Project, Group 1 
+# DevMountain Part Time QA Group Project, Group 1 
 
 This project tests user account functionality for the SmartLink website. The prohject includes a mix of manual and automated tests. 
 Automated tests are implemented using TypeScript and Selenium.
